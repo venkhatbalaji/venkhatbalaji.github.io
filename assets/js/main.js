@@ -184,3 +184,109 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+//Contact form
+const sendButton = document.getElementById('send-message');
+sendButton.addEventListener('click', (e) =>{
+    const numberValue = document.getElementById('contact-number').value,
+          nameValue = document.getElementById('contact-name').value,
+          messageValue = document.getElementById('contact-message').value,
+          projectValue = document.getElementById('contact-project').value
+    let numEle = document.getElementsByClassName('contact__number')
+    let nameEle = document.getElementsByClassName('contact__name')
+    if(!isName(nameValue.trim())){
+        nameEle[0].style.display = 'block';
+        return;
+    }
+    if(!isPhoneNumber(numberValue.trim())){
+        numEle[0].style.display = 'block';
+        return;
+    }
+    postData(numberValue, projectValue, messageValue, nameValue)
+    .then((response)=>{
+        console.log(response);
+        if(response.status === 1 || response.status === 2){
+            activeThankYouModal();
+            resetValue();
+        }
+    });
+});
+
+let resetValue = () =>{
+    const numberValue = document.getElementById('contact-number'),
+          nameValue = document.getElementById('contact-name'),
+          messageValue = document.getElementById('contact-message'),
+          projectValue = document.getElementById('contact-project')
+    let numEle = document.getElementsByClassName('contact__number')
+    let nameEle = document.getElementsByClassName('contact__name')
+    numberValue.value = ""
+    nameValue.value = ""
+    projectValue.value = ""
+    messageValue.value = ""
+    numEle[0].style.display = 'hide';
+    nameEle[0].style.display = 'hde';
+}
+
+let isPhoneNumber = (inputNumber) =>{
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    if(inputNumber !== '' && inputNumber !== null && inputNumber !== undefined){
+        if(inputNumber.match(phoneno)){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
+
+let isName = (inputName) => {
+    var alpha = /^[a-zA-Z\s-, ]+$/;  
+    if(inputName !== '' && inputName !== null && inputName !== undefined ){
+        if (!inputName.match(alpha)) {       
+            return false;
+        }
+        else {
+            return true;
+        }
+    }else{
+        return false;
+    }
+}
+
+let postData = async (mobileNumber, project, message, name) =>{
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "mobileNumber": mobileNumber,
+      "project": project,
+      "message": message,
+      "name": name
+    });
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    
+    let response = await fetch("https://data-logging-api.herokuapp.com/instert-details", requestOptions);
+    return response.json();
+}
+
+const thankyoumodalViews = document.querySelectorAll('.thankyou__modal'),
+      thankyoumodalCloses = document.querySelectorAll('.thankyou__modal-close')
+
+let activeThankYouModal = () =>{
+    thankyoumodalViews[0].classList.add('active-modal')
+}
+
+thankyoumodalCloses.forEach((closemodal) => {
+    closemodal.addEventListener('click', ()=>{
+        thankyoumodalViews.forEach((modalView)=>{
+            modalView.classList.remove('active-modal')
+        })
+    })
+})

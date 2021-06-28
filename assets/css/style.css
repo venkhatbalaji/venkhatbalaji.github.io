@@ -701,6 +701,81 @@ img{
 }
 
 
+/* Thank you modal*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.contact__name,
+.contact__number{
+    display: none;
+}
+
+.contact__button:hover{
+    cursor: pointer;
+}
+
+.error-text {
+    color: var(--first-color);
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+.thankyou__modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+
+.thankyou__modal-content{
+    height: 400px;
+    position: relative;
+    background-color: var(--container-color);
+    padding: 1.5rem;
+    border-radius: .5rem;
+    text-align: center;
+}
+
+.thankyou__modal-title{
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-1-5);
+}
+
+.thankyou__modal-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--first-color);
+    cursor: pointer;
+}
+
+.thankyou__modal-icon{
+    color: var(--first-color);
+    margin-right: var(--mb-0-25);
+    font-size: 200px;
+}
 
 
 /* Active Modal */
@@ -959,6 +1034,13 @@ img{
     .services__content{
         padding-right: 3.5rem;
     }
+    .thankyou__modal-content{
+        height: 250px;
+        text-align: center;
+    }
+    .thankyou__modal-icon{
+        font-size: 100px;
+    }
 }
 
 /* For medium devices */
@@ -1113,6 +1195,13 @@ img{
     }
     .footer__socials{
         justify-self: flex-end;
+    }
+    .thankyou__modal-content{
+        height: 400px;
+        text-align: center;
+    }
+    .thankyou__modal-icon{
+        font-size: 250px;
     }
 }
 
