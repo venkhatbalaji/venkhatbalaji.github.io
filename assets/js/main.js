@@ -187,13 +187,13 @@ themeButton.addEventListener('click', () => {
 
 //Contact form
 const sendButton = document.getElementById('send-message');
+let numEle = document.getElementsByClassName('contact__number')
+let nameEle = document.getElementsByClassName('contact__name')
 sendButton.addEventListener('click', (e) =>{
     const numberValue = document.getElementById('contact-number').value,
           nameValue = document.getElementById('contact-name').value,
           messageValue = document.getElementById('contact-message').value,
           projectValue = document.getElementById('contact-project').value
-    let numEle = document.getElementsByClassName('contact__number')
-    let nameEle = document.getElementsByClassName('contact__name')
     if(!isName(nameValue.trim())){
         nameEle[0].style.display = 'block';
         return;
@@ -217,14 +217,12 @@ let resetValue = () =>{
           nameValue = document.getElementById('contact-name'),
           messageValue = document.getElementById('contact-message'),
           projectValue = document.getElementById('contact-project')
-    let numEle = document.getElementsByClassName('contact__number')
-    let nameEle = document.getElementsByClassName('contact__name')
     numberValue.value = ""
     nameValue.value = ""
     projectValue.value = ""
     messageValue.value = ""
-    numEle[0].style.display = 'hide';
-    nameEle[0].style.display = 'hde';
+    numEle[0].style.display = 'none';
+    nameEle[0].style.display = 'none';
 }
 
 let isPhoneNumber = (inputNumber) =>{
