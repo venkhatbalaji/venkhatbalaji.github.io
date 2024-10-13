@@ -77,6 +77,11 @@ body.dark-theme{
     --scroll-thumb-color: hsl(var(--hue-color), 12%, 36%);
 }
 
+a:focus,
+a:active {
+    outline: none;
+    box-shadow: none;
+}
 /*========== Button Dark/Light ==========*/
 
 .nav__btns{
@@ -849,8 +854,12 @@ input[type=number] {
 
 /*==================== CONTACT ME ====================*/
 
-.contact__container{
-    row-gap: 3rem;
+.contact__container {
+    display: flex;                   /* Use flexbox for alignment */
+    flex-direction: column;          /* Stack items vertically */
+    align-items: center;             /* Center items horizontally */
+    justify-content: center;         /* Center items vertically */
+    text-align: center;              /* Center text within each item */
 }
 
 .contact__information{
@@ -867,6 +876,7 @@ input[type=number] {
 .contact__title{
     font-size: var(--h3-font-size);
     font-weight: var(--font-medium);
+    text-align: left;
 }
 
 .contact__subtitle{

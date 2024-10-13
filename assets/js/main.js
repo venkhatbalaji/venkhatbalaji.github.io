@@ -186,30 +186,43 @@ themeButton.addEventListener('click', () => {
 })
 
 //Contact form
+//const sendButton = document.getElementById('send-message');
+// let numEle = document.getElementsByClassName('contact__number')
+// let nameEle = document.getElementsByClassName('contact__name')
+// sendButton.addEventListener('click', (e) =>{
+//     const numberValue = document.getElementById('contact-number').value,
+//           nameValue = document.getElementById('contact-name').value,
+//           messageValue = document.getElementById('contact-message').value,
+//           projectValue = document.getElementById('contact-project').value
+//     if(!isName(nameValue.trim())){
+//         nameEle[0].style.display = 'block';
+//         return;
+//     }
+//     if(!isPhoneNumber(numberValue.trim())){
+//         numEle[0].style.display = 'block';
+//         return;
+//     }
+//     postData(numberValue, projectValue, messageValue, nameValue)
+//     .then((response)=>{
+//         console.log(response);
+//         if(response.status === 1 || response.status === 2){
+//             activeThankYouModal();
+//             resetValue();
+//         }
+//     });
+// });
+
 const sendButton = document.getElementById('send-message');
-let numEle = document.getElementsByClassName('contact__number')
-let nameEle = document.getElementsByClassName('contact__name')
-sendButton.addEventListener('click', (e) =>{
-    const numberValue = document.getElementById('contact-number').value,
-          nameValue = document.getElementById('contact-name').value,
-          messageValue = document.getElementById('contact-message').value,
-          projectValue = document.getElementById('contact-project').value
-    if(!isName(nameValue.trim())){
-        nameEle[0].style.display = 'block';
-        return;
-    }
-    if(!isPhoneNumber(numberValue.trim())){
-        numEle[0].style.display = 'block';
-        return;
-    }
-    postData(numberValue, projectValue, messageValue, nameValue)
-    .then((response)=>{
-        console.log(response);
-        if(response.status === 1 || response.status === 2){
-            activeThankYouModal();
-            resetValue();
-        }
-    });
+
+sendButton.addEventListener('click', (e) => {
+    // Prevent default behavior
+    e.preventDefault();
+
+    // Construct the mailto link
+    const mailtoLink = `mailto:venkhatbalaji@gmail.com`;
+
+    // Open the default mail client
+    window.location.href = mailtoLink;
 });
 
 let resetValue = () =>{
